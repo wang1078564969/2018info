@@ -1,0 +1,329 @@
+<div id="home">
+	<!-- home页面 -->
+    <div class="outerDiv">
+    	<div class="row up">
+	    	<div class="col-sm-3">
+	    		<div class="totalDiv bg-white">
+	    			<div class="iconDiv bg-green">
+	    				<!-- 图标 -->
+	    				<i class="iconfont icon-yun "></i>
+	    			</div>
+	    			<div class="numDiv">
+	    				<span>99.9%</span>
+	    				<small>SERVER UPTIME</small>
+	    			</div>
+	    		</div>
+	    		<div class="totalDiv bg-white">
+	    			<div class="iconDiv bg-purple">
+	    				<!-- 图标 -->
+	    				<i class="iconfont icon-user "></i>
+	    			</div>
+	    			<div class="numDiv">
+	    				<span>117k</span>
+	    				<small>USERS TOTAL</small>
+	    			</div>
+	    		</div>
+	    		<div class="totalDiv bg-white">
+	    			<div class="iconDiv bg-blue">
+	    				<!-- 图标 -->
+	    				<i class="iconfont icon-18 "></i>
+	    			</div>
+	    			<div class="numDiv">
+	    				<span>2,407</span>
+	    				<small>NEW DAILY PHOTOS</small>
+	    			</div>
+	    		</div>
+	    	</div>
+	    	<div class="visDiv col-sm-6">
+				<!-- 图标和字 -->
+				<div id="visContainer"></div>
+				<div class="numDiv">
+					<span>14.85%</span>
+    				<small>More Visitors</small>
+				</div>
+	    	</div>
+	    	<div class="col-sm-3">
+				<div class="uptimeDiv">
+					<div id="uptimeContainer"></div>
+					<div class="numDiv">
+						<span>95.8%</span>
+	    				<small>CURRENT SERVER UPTIME</small>
+					</div>
+				</div>
+				<div class="salesDiv">
+					<div class="salesDiv">
+					<div id="salesContainer"></div>
+					<div class="numDiv">
+						<span>320,45</span>
+	    				<small>AVG OF SALES</small>
+					</div>
+				</div>
+    		</div>
+    		<div style="color: #f0f0f0">1</div>
+    	</div>
+    	<div class="row down">
+    		<div class="col-sm-6 bg-danger">
+    			<div class="down-left1">
+    				
+    			</div>
+    			<div class="down-left2"></div>
+    		</div>
+    		<div class="col-sm-6 bg-primary">
+    			
+    		</div>
+    	</div>
+    </div>
+</div>
+<script>
+	$(function(){
+		/*$('#home input[type=checkbox]').bootstrapSwitch('state',false);
+		$("#home").on({
+			'switchChange.bootstrapSwitch':function (event,state) {
+		          alert(state);
+		          // 点击修改之后，向后台传递参数
+		      }
+		},'[type=checkbox]');*/
+		// 绘制图标
+		drawVis();
+		drawUptime();
+		drawSales();
+		function drawVis(){
+			var chart = Highcharts.chart('visContainer', {
+				colors:['#64bb11','#ccc'],
+				chart:{
+					margin:[0,0,0,0]
+				},
+				credits:{
+				     enabled: false // 禁用版权信息
+				},
+				title: {
+					text: ''
+				},
+				subtitle: {
+					text: ''
+				},
+				xAxis: {
+					visible:false,
+					title: {
+						text: ''
+					}
+				},
+				yAxis: {
+					visible:false,
+					title: {
+						text: ''
+					}
+				},
+				legend: {
+					enabled:true,
+					layout: 'vertical',
+					align: 'right',
+					verticalAlign: 'top'
+				},
+				plotOptions: {
+					series: {
+						label: {
+							connectorAllowed: false
+						},
+						pointStart: 2010
+					}
+				},
+				series: [{
+					name: '安装，实施人员',
+					data: [43934, 52503, 57177, 69658, 97031, 119931, 137133, 154175,43934, 52503, 57177, 69658, 97031, 119931, 137133, 154175]
+				}, {
+					name: '工人',
+					data: [24916, 24064, 29742, 29851, 32490, 30282, 38121, 40434,24916, 24064, 29742, 29851, 32490, 30282, 38121, 40434]
+				}]				
+			});
+		};
+		function drawUptime(){
+			// 柱状图
+			var chart = Highcharts.chart('uptimeContainer', {
+			credits:{
+				enabled:false
+			},
+			chart: {
+				type: 'column',
+				margin : [0, 0 , 0, 0]
+			},
+			title: {
+				text: ''
+			},
+			subtitle: {
+				text: ''
+			},
+			xAxis: {
+				type: 'category',
+				visible:false,
+			},
+			yAxis: {
+				visible:false,
+				title: {
+					text: '总的市场份额'
+				}
+			},
+			legend: {
+				enabled: false
+			},
+			plotOptions: {
+				series: {
+					borderWidth: 0,
+					dataLabels: {
+						enabled: false,
+						format: '{point.y:.1f}%'
+					}
+				}
+			},
+			tooltip: {
+				headerFormat: '<span style="font-size:11px">{series.name}</span><br>',
+				pointFormat: '<span style="color:{point.color}">{point.name}</span>: <b>{point.y:.2f}%</b> of total<br/>'
+			},
+			series: [{
+				name: '浏览器品牌',
+				// colorByPoint: true,
+				// color:['#7c30bc'],
+				color:"#7c30bc",
+				data: [29.9, 71.5, 106.4, 129.2, 144.0, 176.0, 135.6, 148.5, 216.4, 194.1, 95.6, 54.4,29.9, 71.5, 106.4, 129.2, 144.0, 176.0, 135.6, 148.5, 216.4, 194.1, 95.6, 54.4]
+			}],
+			});
+		};
+		function drawSales(){
+			var chart = Highcharts.chart('salesContainer', {
+				chart: {
+					margin : [0, 0 , 0, 0]
+				},
+				title: {
+					floating:false,
+					text: ''
+				},
+				credits:{
+				     enabled: false // 禁用版权信息
+				},
+				tooltip: {
+					pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+				},
+				plotOptions: {
+					pie: {
+						allowPointSelect: true,
+						cursor: 'pointer',
+						dataLabels: {
+							enabled: false,
+							format: '<b>{point.name}</b>: {point.percentage:.1f} %',
+							style: {
+								color: (Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black'
+							}
+						},
+					}
+				},
+				series: [{
+					type: 'pie',
+					innerSize: '60%',
+					name: '市场份额',
+					data: [
+						['IE',       26.8],
+						['Firefox',  45.0],
+						['Chrome',   12.8],
+						['Safari',    8.5],
+						['Opera',     6.2],
+						['其他',   0.7]
+					]
+				}]
+			}, function(c) { // 图表初始化完毕后的会掉函数
+				// 环形图圆心
+				var centerY = c.series[0].center[1],
+					titleHeight = parseInt(c.title.styles.fontSize);
+				// 动态设置标题位置
+				c.setTitle({
+					y:centerY + titleHeight/2
+				});
+			});
+		}
+	});
+</script>
+
+<style>
+	.outerDiv{
+		width: 95%;
+		margin: 0 auto;
+	}
+	.bg-white{
+		background-color: white;
+	}
+	.bg-green{
+		background-color: #63b919;
+	}
+	/*左侧的三行*/
+	.totalDiv{
+		overflow:hidden;
+		padding: 10px;
+		border-radius: 5px;
+		margin-top:10px;
+	}
+	.iconDiv,.totalDiv .numDiv{
+		float: left;
+	}
+	.bg-white{
+		background-color: white;
+	}
+	.bg-green{
+		background-color: #64bb11;
+	}
+	.bg-blue{
+		background-color: #53d3f1;
+	}
+	.bg-purple{
+		background-color: #7c30bc;
+	}
+	.iconDiv{
+		width: 40px;
+		height: 40px;
+		border-radius: 50%;
+		text-align: center;
+		margin-left: 10px;
+	}
+	.iconDiv i{
+		font-size: 24px;
+		color: white;
+		line-height: 40px;
+	}
+	.totalDiv .numDiv{
+		margin-left: 20px;
+	}
+	.numDiv span{
+		font-size:24px; 
+		line-height: 24px;
+	}
+	.numDiv small{
+		display: block;
+	}
+	.visDiv,.uptimeDiv,.salesDiv{
+		position: relative;
+	}
+	#visContainer{
+		height: 260px;
+		margin-top:10px;
+	}
+	.visDiv .numDiv,.uptimeDiv .numDiv,.salesDiv .numDiv{
+		position: absolute;
+		top:20px;
+		left:20px;
+	}
+	.uptimeDiv .numDiv,.salesDiv .numDiv{
+		top:10px;
+		left: 10px;
+	}
+	.visDiv .numDiv span{
+		color:#63b919;
+	}
+	#uptimeContainer,#salesContainer{
+		height: 98px;
+		margin-top: 10px;
+	}
+	.uptimeDiv span,.salesDiv span{
+		font-size:20px;
+	}
+	.uptimeDiv span{
+		color: #7c30bc;
+	}
+</style>
